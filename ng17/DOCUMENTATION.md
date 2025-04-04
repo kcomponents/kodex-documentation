@@ -6,15 +6,6 @@
 
 Esta documentación describe los componentes y utilidades disponibles en la librería kng-components-v3 para Angular 17. La librería ofrece una colección de componentes predefinidos para construir aplicaciones web con un diseño y funcionalidad estandarizados.
 
-### Índice de Componentes
-
-1. [k-layout](./k-layout.md) - Estructura principal de la aplicación, con cabecera, barra lateral y área de contenido.
-2. [k-table](./k-table.md) - Tabla de datos con paginación, ordenamiento y acciones.
-3. [k-modal](./k-modal.md) - Ventanas modales para formularios y contenido interactivo.
-4. [k-search](./k-search.md) - Componentes de búsqueda y filtrado avanzados.
-5. [k-button](./k-button.md) - Botones estilizados para diferentes acciones y contextos.
-6. [k-component-filter](./k-component-filter.md) - Componente completo para implementar filtros de búsqueda.
-
 ### Instalación
 
 Para utilizar estos componentes, es necesario incluir las siguientes dependencias en su proyecto:
