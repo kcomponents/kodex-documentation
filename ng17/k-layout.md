@@ -22,10 +22,26 @@ import { KLayoutComponent } from '@ec.com.kgr/kng-components-v3/k-layout';
    ]
  })
 export class ParametersContentComponent implements OnInit {...}
-
 ```
 
 ```html
+<!-- BASE WITOUTH FUNCTIONALITY -->
+<k-layout 
+[appName]="'Proyecto Base'" 
+[pageTitle]="'Administración de parámetros.'" 
+[sidebarTemplate]=""
+[headerTemplate]="" 
+[toolTipHomeText]="'Inicio'" 
+[helpTemplate]=""
+[titleHelpText]="'Ayuda del módulo parámetros'" 
+[disableLoading]="false">
+    <ng-container *ngTemplateOutlet="contentTemplate">
+    </ng-container>
+</k-layout>
+```
+
+```html
+<!-- Example with functionality-->
 <k-layout 
 [appName]="'Proyecto Base'" 
 [pageTitle]="'Administración de parámetros.'" 
@@ -57,4 +73,5 @@ export class ParametersContentComponent implements OnInit {...}
 * imageHeader: Establece la url del ícono a mostrarse en la parte izquierda del header.
 * disableLinkHome: Tanto el ícono como el nombre se deshabilitan o habilitan.  
 
- 
+
+
