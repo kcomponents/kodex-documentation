@@ -14,26 +14,6 @@ El Componente k-modal permite la creación de ventanas modales en aplicaciones w
 ## Ejemplo Básico
  
  ```html
- <!--BASIC EXAMPLE-->
-
- <!--k-modal-content-->
-    <form class="form" #resultForm="ngForm" autocomplete="off">
-        <div class="container">
-             <!-- ADD COMPONENTS -->
-    
-    
-            <br>
-        </div>
-        <div class="modal-footer k-modal-footer">
-            <button class="btn btn-success btn-sm">
-                <em class="fa fa-save"></em> Guardar
-            </button>
-            <button class="btn btn-danger btn-sm" type="reset">
-                <em class="fa fa-close"></em> Cancelar
-            </button>
-        </div>
-    </form>
-´´´
 
 
 <!--EXAMPLE WITH METHODS-->
@@ -54,5 +34,7 @@ El Componente k-modal permite la creación de ventanas modales en aplicaciones w
            </button>
        </div>
    </form>
+
+```
 
 
