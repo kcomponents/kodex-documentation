@@ -25,22 +25,6 @@ export class ParametersContentComponent implements OnInit {...}
 ```
 
 ```html
-<!-- BASE WITOUTH FUNCTIONALITY -->
-<k-layout 
-[appName]="'Proyecto Base'" 
-[pageTitle]="'Administración de parámetros.'" 
-[sidebarTemplate]=""
-[headerTemplate]="" 
-[toolTipHomeText]="'Inicio'" 
-[helpTemplate]=""
-[titleHelpText]="'Ayuda del módulo parámetros'" 
-[disableLoading]="false">
-    <ng-container *ngTemplateOutlet="contentTemplate">
-    </ng-container>
-</k-layout>
-```
-
-```html
 <!-- Example with functionality-->
 <k-layout 
 [appName]="'Proyecto Base'" 
