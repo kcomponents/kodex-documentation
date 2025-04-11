@@ -25,7 +25,7 @@ Esta documentación describe los componentes y utilidades disponibles en la libr
 15. [k-validations](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-validations.md)
 16. [k-viewer](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-viewer.md)
 17. [typescript](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/typescript.md)
-
+[k-button-header-new](#k-button-header-new)
 
 ### Instalación
 
