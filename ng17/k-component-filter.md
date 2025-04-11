@@ -1,17 +1,55 @@
 ![Kruger Corp](https://img.shields.io/badge/Kruger_Corp_®-Copyright_2022-blue)
 
+# k-component-filter
 
-# kng-components-v3
+Component with search filters for sidebar Template, Component that contains the logic for search filters
 
-## k-component-filter
+## Class Name
 
-El Componente k-component-filter proporciona una estructura completa para implementar filtros de búsqueda en aplicaciones web con `angular 17`. Integra los componentes de búsqueda de k-search con un diseño estándar y lógica de gestión de filtros. El componente depende de librerías de terceros tales como `bootstrap4`, `primeng` y `ngx-bootstrap/popover`, los cuales deben ser incluidos.
+`PersonsFiltersComponent`
+
+## Dependencies
+
+* `Component, EventEmitter, Output, ViewChild` from `@angular/core`
+* `KSearchInputDateComponent, KSearchInputNumberComponent, KSearchInputNumericComponent, KSearchInputTextComponent, KSearchSelectComponent, KSearchTableComponent, OptionConfigModel, PrimeNgEs` from `@ec.com.kgr/kng-components-v3/k-search`
+* `CommonModule` from `@angular/common`
+* `FormsModule` from `@angular/forms`
+* `KFieldsetComponent` from `@ec.com.kgr/kng-components-v3/k-fieldset`
+* `NumbersDirective, UpperCaseDirective, ToUpperCaseDirective` from `@ec.com.kgr/kng-components-v3/k-common/k-directives`
+* `PersonsFilterService` from `@persons/services/persons-filter.service`
+* `PopoverModule` from `ngx-bootstrap/popover`
+* `KValidationsModule` from `@ec.com.kgr/kng-components-v3/k-common/k-validations`
+
+## Selector
+
+`app-persons-filters`
+
+This is a standalone component.
+
+### Required Imports
+
+* `CommonModule`
+* `FormsModule`
+* `KFieldsetComponent`
+* `KSearchInputTextComponent`
+* `KSearchInputDateComponent`
+* `KSearchSelectComponent`
+* `PopoverModule`
+* `KValidationsModule`
+
+## Import
+
+```typescript
+import { PersonsFiltersComponent } from '@ec.com.kgr/kng-components-v3/persons-filters';
+```
+
+## TypeScript
 
 ```typescript
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import {
   KSearchInputDateComponent, KSearchInputNumberComponent, KSearchInputNumericComponent,
-  KSearchInputTextComponent, KSearchSelectComponent, KSearchTableComponent, OptionConfigModel, PrimeNgEs
+  KSearchInputTextComponent, KSearchSelectComponent, KSearchTableComponent,OptionConfigModel, PrimeNgEs
 } from '@ec.com.kgr/kng-components-v3/k-search';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -43,20 +81,21 @@ import { KValidationsModule } from '@ec.com.kgr/kng-components-v3/k-common/k-val
     KValidationsModule
   ],
   templateUrl: './persons-filters.component.html',
-  styleUrls: ['./persons-filters.component.scss']
+  styleUrl: './persons-filters.component.scss'
 })
 export class PersonsFiltersComponent {
 
   /** Output event */
   @Output() onSearchEvent: EventEmitter<any> = new EventEmitter();
   @Output() change = new EventEmitter<any>();
-
   statusList: Array<any>;
 
   optionSettings: OptionConfigModel = new OptionConfigModel(true, true, true);
   rangeOptionSettings: OptionConfigModel = new OptionConfigModel(true, true, true);
 
-  constructor(public personsFilterService: PersonsFilterService) {
+
+  constructor(
+    public personsFilterService: PersonsFilterService) {
     this.findStatus();
     this.personsFilterService.status.parameterValue = 'TODOS';
   }
@@ -90,15 +129,24 @@ export class PersonsFiltersComponent {
    */
   findStatus() {
     this.statusList = [
-      { 'status': 'Todos', 'value': 'TODOS' },
-      { 'status': 'Activo', 'value': 'true' },
-      { 'status': 'Inactivo', 'value': 'false' }
+      {
+        'status': 'Todos',
+        'value': 'TODOS'
+      },
+      {
+        'status': 'Activo',
+        'value': 'true'
+      },
+      {
+        'status': 'Inactivo',
+        'value': 'false'
+      }
     ];
   }
 }
 ```
 
-### Estructura Completa del Componente
+## HTML
 
 ```html
 <div class="card">
@@ -184,42 +232,66 @@ export class PersonsFiltersComponent {
 </div>
 ```
 
-### Propiedades de los componentes de búsqueda
+## Usage
 
-* **k-search-input-text**:
-  * required: Especifica true o false para definir si el campo es obligatorio.
-  * upperInputValue: Especifica true o false para convertir automáticamente a mayúsculas el texto ingresado.
-  * placeholder: Establece el texto guía dentro del campo de entrada.
-  * showComparatorType: Especifica true o false para mostrar las opciones de comparación (igual, contiene, etc).
-  * disabledCommaList: Especifica true o false para deshabilitar la entrada de listas separadas por comas.
-  * label: Establece el texto de la etiqueta del campo.
-  * optionSettings: Configura las opciones de búsqueda mediante el modelo OptionConfigModel.
-  * maxlength: Establece el número máximo de caracteres permitidos.
-  * regularExpression: Define una expresión regular para validar el texto ingresado.
+Component can be used with the following selectors:
 
-* **k-search-input-date**:
-  * label: Establece el texto de la etiqueta del campo.
-  * optionSettings: Configura las opciones de búsqueda mediante el modelo OptionConfigModel.
-  * required: Especifica true o false para definir si el campo es obligatorio.
-  * showComparatorType: Especifica true o false para mostrar las opciones de comparación (mayor que, menor que, etc).
-  * showTime: Especifica true o false para mostrar la selección de hora.
-  * showIcon: Especifica true o false para mostrar el icono del calendario.
-  * yearRange: Establece el rango de años disponibles en el selector.
+* `<k-component-filter`
+* `k-component-filter`
 
-* **k-search-select**:
-  * itemList: Establece el array de opciones a mostrar en el selector.
-  * label: Establece el texto de la etiqueta del campo.
-  * optionSettings: Configura las opciones de búsqueda mediante el modelo OptionConfigModel.
-  * optionValue: Define la propiedad utilizada como valor en el selector.
-  * descriptionValue: Define la propiedad o propiedades mostradas como texto en el selector.
-  * placeholder: Establece el texto guía cuando no hay selección.
-  * notFoundText: Establece el mensaje cuando no se encuentran resultados.
+## Input Properties
 
-### Eventos principales
+* `[descriptionValue]`: Defines the descriptionValue.
+* `[disabledCommaList]`: Defines the disabledCommaList.
+* `[itemList]`: Defines the itemList.
+* `[label]`: Defines the label.
+* `[maxlength]`: Defines the maxlength.
+* `[notFoundText]`: Defines the notFoundText.
+* `[optionSettings]`: Defines the optionSettings.
+* `[optionValue]`: Defines the optionValue.
+* `[placeholder]`: Defines the placeholder.
+* `[popover]`: Defines the popover.
+* `[regularExpression]`: Defines the regularExpression.
+* `[required]`: Defines the required.
+* `[showComparatorType]`: Defines the showComparatorType.
+* `[showIcon]`: Defines the showIcon.
+* `[showTime]`: Defines the showTime.
+* `[upperInputValue]`: Defines the upperInputValue.
+* `[yearRange]`: Defines the yearRange.
 
-* onSearchEvent: Evento emitido cuando se realiza una búsqueda.
-* cleanFilters: Método para limpiar todos los filtros aplicados.
+## Output Events
 
-### Estructura Completa del Componente
+* `(click)`: Event emitted when click occurs.
+* `(ngModel)`: Event emitted when ngModel occurs.
+* `(submitValidForm)`: Event emitted when submitValidForm occurs.
 
-Para ver la estructura completa del componente, consulte el ejemplo en la documentación inicial.
+## Attributes
+
+* `0`: Defines the 0 attribute.
+* `ALPHANUMERIC`: Defines the ALPHANUMERIC attribute.
+* `BUTTONS`: Defines the BUTTONS attribute.
+* `BY`: Defines the BY attribute.
+* `Buscar`: Defines the Buscar attribute.
+* `CHARACTERS`: Defines the CHARACTERS attribute.
+* `DATE`: Defines the DATE attribute.
+* `DOCUMMENT`: Defines the DOCUMMENT attribute.
+* `EMAIL`: Defines the EMAIL attribute.
+* `FILTER`: Defines the FILTER attribute.
+* `NAME`: Defines the NAME attribute.
+* `NUMBERS`: Defines the NUMBERS attribute.
+* `ONLY`: Defines the ONLY attribute.
+* `REGISTER`: Defines the REGISTER attribute.
+* `SECONDNAME`: Defines the SECONDNAME attribute.
+* `Status`: Defines the Status attribute.
+* `búsqueda`: Defines the búsqueda attribute.
+* `de`: Defines the de attribute.
+* `encontraron`: Defines the encontraron attribute.
+* `filtros`: Defines the filtros attribute.
+* `kFieldsetLegend`: Defines the kFieldsetLegend attribute.
+* `los`: Defines the los attribute.
+* `name`: Defines the name attribute.
+* `registro`: Defines the registro attribute.
+* `resultados`: Defines the resultados attribute.
+* `se`: Defines the se attribute.
+* `todos`: Defines the todos attribute.
+

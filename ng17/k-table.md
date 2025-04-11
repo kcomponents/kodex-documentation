@@ -1,43 +1,43 @@
 ![Kruger Corp](https://img.shields.io/badge/Kruger_Corp_®-Copyright_2022-blue)
 
+# k-table
 
-# kng-components-v3
+Table component with pagination, k-table-1-imports
 
-## k-table
+## Dependencies
 
-El Componente k-table implementa una tabla de datos paginada y con funcionalidades avanzadas para aplicaciones web con `angular 17`. El componente depende de librerías de terceros tales como `primeng/table` y `ngx-bootstrap/popover` para proporcionar una experiencia de usuario óptima.
+* `Table, TableModule` from `primeng/table`
+* `PopoverModule` from `ngx-bootstrap/popover`
+* `KMessageService` from `@ec.com.kgr/kng-components-v3/k-common/k-message`
+* `Component, ViewChild` from `@angular/core`
+* `ResponseVO` from `@ec.com.kgr/kng-components-v3/k-common`
+* `UserService` from `@ec.com.kgr/kng-components-v3/k-security`
+* `FilterVO` from `@shared/vo/filter-vo`
+
+## TypeScript
 
 ```typescript
 import { Table, TableModule } from 'primeng/table';
 import { PopoverModule } from 'ngx-bootstrap/popover';
-import { KLayoutComponent } from '@ec.com.kgr/kng-components-v3/k-layout';
-import { CommonModule } from '@angular/common';
- 
-@Component({
-  selector: 'app-parameters-content',
-  standalone: true,
-  templateUrl: './app-parameters-content.html',
-  styleUrls: ['./app-parameters-content.scss'],
-  imports: [
-    TableModule,
-    PopoverModule,
-    KLayoutComponent,
-    CommonModule
-  ]
-})
-export class ParametersContentComponent implements OnInit {
-  @ViewChild('dataTable', { static: false }) private dataTable: Table;
-  // ... more code
-}
+import { KMessageService } from '@ec.com.kgr/kng-components-v3/k-common/k-message';
+import { Component, ViewChild } from '@angular/core';
+import { ResponseVO } from '@ec.com.kgr/kng-components-v3/k-common';
+import { UserService } from '@ec.com.kgr/kng-components-v3/k-security';
+import { FilterVO } from '@shared/vo/filter-vo';
 ```
 
+## HTML
+
 ```html
+
+
+<!--k-table-->
 <div class="scroll-content-elements k-ptable-header k-paginator">
-    <p-table #dataTable [value]="values" [paginator]="true" [rows]="15" paginatorPosition="top" [lazy]="true"
-            [totalRecords]="totalRecords" (onLazyLoad)="paginationEvent($event)" responsiveLayout="scroll" styleClass="p-datatable-lg p-datatable-striped">
+    <p-table #dataTable [value]="${1:values}" [paginator]="true" [rows]="15" paginatorPosition="top" [lazy]="true"
+            [totalRecords]="totalRecords" (onLazyLoad)="paginationEvent(\$event)" responsiveLayout="scroll" styleClass="p-datatable-lg p-datatable-striped">
             <ng-template pTemplate="caption">
                 <div class="k-ptable-header">
-                    Listado de datos
+                    Listado de ${2:table name}
                 </div>
             </ng-template>
             <ng-template pTemplate="paginatorleft" let-state>
@@ -49,9 +49,9 @@ export class ParametersContentComponent implements OnInit {
             <ng-template pTemplate="header">
                 <tr>
                     <th class="k-width-index">Nro.</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
+                    <!-- ADD ADDITIONAL HEADERS -->
+
+
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-value let-rowIndex="rowIndex">
@@ -59,23 +59,14 @@ export class ParametersContentComponent implements OnInit {
                     <td class="k-ellipsis-index" [popover]="rowIndex + 1">
                         {{ rowIndex + 1}}
                     </td>
-                    <td>{{value.name}}</td>
-                    <td>{{value.description}}</td>
-                    <td class="col-center">
-                      <div class="d-flex justify-content-around">
-                        <span (click)="openEditModal(value)" [popover]="'Editar'">
-                            <em style="cursor: pointer; transform: scale(1.5);" class="fa fa-edit text-info"></em>
-                        </span>
-                        <span (click)="confirmDelete(value)" [popover]="'Eliminar'">
-                            <em style="cursor: pointer; transform: scale(1.5);" class="fa fa-trash text-danger"></em>
-                        </span>
-                      </div>
-                    </td>
+                    <!-- ADD ADDITIONAL DATA CELLS -->
+
+
                 </tr>
             </ng-template>
            <ng-template pTemplate="emptymessage">
              <tr>
-               <td [attr.colspan]="4" class="k-empty-table">
+               <td [attr.colspan]="${3|1,2,4,6,8,10|}" class="k-empty-table">
                    Seleccione un criterio de búsqueda.
                </td>
              </tr>
@@ -84,64 +75,49 @@ export class ParametersContentComponent implements OnInit {
 </div>
 ```
 
-### Propiedades
+## Usage
 
-* **value**: Establece el arreglo de datos que se mostrará en la tabla.
-* **paginator**: Especifica true o false para definir si se mostrará la paginación.
-* **rows**: Establece el número de filas por página.
-* **paginatorPosition**: Define la posición del paginador (top, bottom, both).
-* **lazy**: Cuando es true, permite la carga perezosa/bajo demanda de datos.
-* **totalRecords**: Establece el número total de registros para la paginación.
-* **onLazyLoad**: Evento que se dispara cuando se debe cargar datos para una página.
-* **responsiveLayout**: Define el comportamiento de la tabla en dispositivos pequeños.
-* **styleClass**: Establece las clases CSS adicionales para la tabla.
+Component can be used with the following selectors:
 
-### Templates
+* `k-table`
+* `<k-table`
+* `k-table-1-imports`
 
-* **pTemplate="caption"**: Define el encabezado superior de la tabla.
-* **pTemplate="paginatorleft"**: Personaliza la parte izquierda del paginador.
-* **pTemplate="paginatorright"**: Personaliza la parte derecha del paginador.
-* **pTemplate="header"**: Define las columnas y encabezados de la tabla.
-* **pTemplate="body"**: Define cómo se renderizan las filas y celdas de datos.
-* **pTemplate="emptymessage"**: Define el mensaje cuando no hay datos para mostrar.
+## Input Properties
 
-### Funciones Principales
+* `[lazy]`: Defines the lazy.
+* `[paginator]`: Defines the paginator.
+* `[popover]`: Defines the popover.
+* `[rows]`: Defines the rows.
+* `[totalRecords]`: Defines the totalRecords.
+* `[value]`: Defines the value.
 
-```typescript
-/**
- * search event to throw pagination event.
- */
-onSearchEvent() {
-  this.dataTable.clear();
-}
+## Output Events
 
-/**
- * pagination event to call load data and changue datatable.
- * @param event have the page and rows of the datatable.
- */
-paginationEvent(event) {
-  this.loadData((event.first / this.rows));
-}
+* `(onLazyLoad)`: Event emitted when onLazyLoad occurs.
 
-/**
- * load data call the API REST to get data by page and params.
- * @param page the calculated page for the API REST.
- */
-loadData(page) {
-  this.request.filters = this.filterService.getFilters();
-  this.request.page = page;
-  this.request.size = this.rows;
-  this.service.findByFilter(this.request).subscribe((response: ResponseVO) => {
-    const data = response.data;
-    if (data.content) {
-        this.values = data.content;
-    } else {
-        this.values = [];
-    }
-    this.totalRecords = data.total;
-    if (0 === data.total) {
-        this.messageService.info('No se encontraron resultados con los filtros ingresados.');
-    }
-  });
-}
-``` 
+## Attributes
+
+* `0`: Defines the 0 attribute.
+* `1`: Defines the 1 attribute.
+* `ADD`: Defines the ADD attribute.
+* `ADDITIONAL`: Defines the ADDITIONAL attribute.
+* `CELLS`: Defines the CELLS attribute.
+* `DATA`: Defines the DATA attribute.
+* `HEADERS`: Defines the HEADERS attribute.
+* `Listado`: Defines the Listado attribute.
+* `Reg`: Defines the Reg attribute.
+* `Seleccione`: Defines the Seleccione attribute.
+* `búsqueda`: Defines the búsqueda attribute.
+* `criterio`: Defines the criterio attribute.
+* `de`: Defines the de attribute.
+* `let`: Defines the let attribute.
+* `name`: Defines the name attribute.
+* `pTemplate`: Defines the pTemplate attribute.
+* `paginatorPosition`: Defines the paginatorPosition attribute.
+* `responsiveLayout`: Defines the responsiveLayout attribute.
+* `rowIndex`: Defines the rowIndex attribute.
+* `state`: Defines the state attribute.
+* `styleClass`: Defines the styleClass attribute.
+* `un`: Defines the un attribute.
+
