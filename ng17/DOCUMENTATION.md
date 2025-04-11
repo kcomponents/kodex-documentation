@@ -8,12 +8,24 @@ Esta documentación describe los componentes y utilidades disponibles en la libr
 
 ### Índice de Componentes
 
-1. [k-layout](./k-layout.md) - Estructura principal de la aplicación, con cabecera, barra lateral y área de contenido.
-2. [k-table](./k-table.md) - Tabla de datos con paginación, ordenamiento y acciones.
-3. [k-modal](./k-modal.md) - Ventanas modales para formularios y contenido interactivo.
-4. [k-search](./k-search.md) - Componentes de búsqueda y filtrado avanzados.
+1. [k-layout](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-layout.md) - Estructura principal de la aplicación, con cabecera, barra lateral y área de contenido.
+2. [k-table](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-table.md) - Tabla de datos con paginación, ordenamiento y acciones.
+3. [k-modal](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-modal.md) - Ventanas modales para formularios y contenido interactivo.
+4. [k-search](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-search.md) - Componentes de búsqueda y filtrado avanzados.
 5. [k-button](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-button.md) - Botones estilizados para diferentes acciones y contextos.
-6. [k-component-filter](./k-component-filter.md) - Componente completo para implementar filtros de búsqueda.
+6. [k-component-filter](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-component-filter.md) - Componente completo para implementar filtros de búsqueda.
+7. [k-component-panel-menu](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-component-panel-menu.md)
+8. [k-confirm-dialog](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-confirm-dialog.md)
+9. [k-footer](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-footer.md)
+10. [k-message](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-message.md)
+11. [k-panel-menu](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-panel-menu.md)
+12. [k-scss](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17k-scss.md)
+13. [k-tree](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-tree.md)
+14. [k-user-service](https://github.com/kcomponents/kodex-documentation/blob/simple/k-user-service.md)
+15. [k-validations](https://github.com/kcomponents/kodex-documentation/blob/simple/k-validations.md)
+16. [k-viewer](https://github.com/kcomponents/kodex-documentation/blob/simple/k-viewer.md)
+17. [typescript](https://github.com/kcomponents/kodex-documentation/blob/simple/typescript.md)
+
 
 ### Instalación
 
