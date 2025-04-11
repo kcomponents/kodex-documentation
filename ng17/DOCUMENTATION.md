@@ -21,10 +21,10 @@ Esta documentación describe los componentes y utilidades disponibles en la libr
 11. [k-panel-menu](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-panel-menu.md)
 12. [k-scss](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17k-scss.md)
 13. [k-tree](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-tree.md)
-14. [k-user-service](https://github.com/kcomponents/kodex-documentation/blob/simple/k-user-service.md)
-15. [k-validations](https://github.com/kcomponents/kodex-documentation/blob/simple/k-validations.md)
-16. [k-viewer](https://github.com/kcomponents/kodex-documentation/blob/simple/k-viewer.md)
-17. [typescript](https://github.com/kcomponents/kodex-documentation/blob/simple/typescript.md)
+14. [k-user-service](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-user-service.md)
+15. [k-validations](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-validations.md)
+16. [k-viewer](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-viewer.md)
+17. [typescript](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/typescript.md)
 
 
 ### Instalación
