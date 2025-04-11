@@ -12,7 +12,7 @@ Esta documentación describe los componentes y utilidades disponibles en la libr
 2. [k-table](./k-table.md) - Tabla de datos con paginación, ordenamiento y acciones.
 3. [k-modal](./k-modal.md) - Ventanas modales para formularios y contenido interactivo.
 4. [k-search](./k-search.md) - Componentes de búsqueda y filtrado avanzados.
-5. [k-button](./k-button.md) - Botones estilizados para diferentes acciones y contextos.
+5. [k-button](https://github.com/kcomponents/kodex-documentation/blob/simple/ng17/k-button.md) - Botones estilizados para diferentes acciones y contextos.
 6. [k-component-filter](./k-component-filter.md) - Componente completo para implementar filtros de búsqueda.
 
 ### Instalación
