@@ -75,7 +75,7 @@ Los botones de cabecera se utilizan en la sección de encabezado de los componen
 #### Botón Nuevo
 
 ```html
-<!--k-button-header-new-->
+
 <ul class="nav-ul">
     <li class="nav-item">
         <a class="nav-link text-a" (click)="openSaveModal()" [popover]="'Agregar nuevo parámetro'">
@@ -88,7 +88,7 @@ Los botones de cabecera se utilizan en la sección de encabezado de los componen
 #### Botón Excel
 
 ```html
-<!--k-button-header-excel-->
+
 <ul class="nav-ul">
     <li class="nav-item">
         <a class="nav-link text-a" (click)="exportToExcel()" [popover]="'Exportar a Excel'">
@@ -101,7 +101,7 @@ Los botones de cabecera se utilizan en la sección de encabezado de los componen
 #### Botón PDF
 
 ```html
-<!--k-button-header-pdf-->
+
 <ul class="nav-ul">
     <li class="nav-item">
         <a class="nav-link text-a" (click)="exportToPdf()" [popover]="'Exportar a PDF'">
@@ -114,7 +114,7 @@ Los botones de cabecera se utilizan en la sección de encabezado de los componen
 #### Botón Atrás
 
 ```html
-<!--k-button-header-back-->
+
 <ul class="nav-ul">
     <li class="nav-item">
         <a class="nav-link text-a" routerLink="/">
@@ -131,7 +131,7 @@ Los botones de acción se utilizan dentro de formularios y modales para realizar
 #### Botón Guardar
 
 ```html
-<!--k-button-save-->
+
 <button class="btn btn-success btn-sm" (click)="save()">
    <em class="fa fa-save"></em> Guardar
 </button>
@@ -140,7 +140,7 @@ Los botones de acción se utilizan dentro de formularios y modales para realizar
 #### Botón Cancelar/Cerrar
 
 ```html
-<!--k-button-close-->
+
 <button class="btn btn-danger btn-sm" type="reset" (click)="close()">
     <em class="fa fa-close"></em> Cancelar
 </button>
@@ -149,7 +149,7 @@ Los botones de acción se utilizan dentro de formularios y modales para realizar
 #### Botón Genérico
 
 ```html
-<!--k-button-->
+
 <button class="btn btn-info btn-sm k-button" (click)="someFunction()">
     <em class="fa fa-info-circle"></em> Información
 </button>
@@ -162,7 +162,7 @@ Estos botones se utilizan dentro de las celdas de una tabla para realizar accion
 #### Botón Editar
 
 ```html
-<!--k-table-button-edit-->
+
 <span (click)="openEditModal(object)" [popover]="'Editar'">
     <em style="cursor: pointer; transform: scale(1.5);" class="fa fa-edit text-info"></em>
 </span>
@@ -171,7 +171,7 @@ Estos botones se utilizan dentro de las celdas de una tabla para realizar accion
 #### Botón Eliminar
 
 ```html
-<!--k-table-button-delete-->
+
 <span (click)="confirmDelete(object)" [popover]="'Eliminar'">
     <em style="cursor: pointer; transform: scale(1.5);"
         class="fa fa-trash text-danger"></em>
@@ -181,7 +181,7 @@ Estos botones se utilizan dentro de las celdas de una tabla para realizar accion
 #### Conjunto de Botones de Acción para Tablas
 
 ```html
-<!--k-td-buttons-actions-->
+
 <td class="col-center">
   <div class="d-flex justify-content-around">
     <span (click)="openEditModal(value)" [popover]="'Editar'">
@@ -246,8 +246,7 @@ Los siguientes son clases CSS que pueden ser aplicadas a los botones para darles
             </a>
         </li>
     </ul>
-    
-    <!--k-button-header-excel-->
+   
     <ul class="nav-ul">
         <li class="nav-item">
             <a class="nav-link text-a" (click)="exportToExcel()" [popover]="'Exportar a Excel'">
@@ -263,12 +262,12 @@ Los siguientes son clases CSS que pueden ser aplicadas a los botones para darles
 
 ```html
 <div class="modal-footer k-modal-footer">
-    <!--k-button-save-->
+  
     <button class="btn btn-success btn-sm" (click)="save()">
        <em class="fa fa-save"></em> Guardar
     </button>
     
-    <!--k-button-close-->
+   
     <button class="btn btn-danger btn-sm" type="reset" (click)="close()">
         <em class="fa fa-close"></em> Cancelar
     </button>
