@@ -8,41 +8,81 @@
 El Componente p-table implementa una tabla de datos paginada y con funcionalidades avanzadas para aplicaciones web con `angular 17`. El componente depende de librerías de terceros tales como `primeng/table` y `ngx-bootstrap/popover` para proporcionar una experiencia de usuario óptima.
 
 ```typescript
+import { Component, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ResponseVO } from '@ec.com.kgr/kng-components-v3/k-common';
+import { KLayoutComponent } from '@ec.com.kgr/kng-components-v3/k-layout';
+import { KMessageService } from '@ec.com.kgr/kng-components-v3/k-common/k-message';
+import { KFieldsetComponent } from '@ec.com.kgr/kng-components-v3/k-fieldset';
+import { ConfirmationService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Table, TableModule } from 'primeng/table';
 import { PopoverModule } from 'ngx-bootstrap/popover';
-import { KLayoutComponent } from '@ec.com.kgr/kng-components-v3/k-layout';
-import { CommonModule } from '@angular/common';
-import { ParametersFilterService } from '@parameters/services/parameters-filter.service';
 import { ParametersService } from '@parameters/services/parameters.service';
- 
+import { FilterVO } from '@shared/vo/filter-vo';
+import { ParameterVo } from '@parameters/vo/parameter-vo';
+import { constants } from '@const/constants';
+import { ParametersModalComponent } from '@parameters/modals/parameters-modal/parameters-modal.component';
+import { ParametersFiltersComponent } from '@parameters/components/parameters-filters/parameters-filters.component';
+import { ParametersFilterService } from '@parameters/services/parameters-filter.service';
+import { UserService } from '@ec.com.kgr/kng-components-v3/k-security';
+
+/**
+ * Parameters content module
+ *
+ * @author components on 2024/06/18.
+ * @version 1.0
+ * @since 1.0.0
+ */
+
 @Component({
   selector: 'app-parameters-content',
   standalone: true,
-  templateUrl: './app-parameters-content.html',
-  styleUrls: ['./app-parameters-content.scss'],
   imports: [
+    KLayoutComponent,
+    KFieldsetComponent,
+    CommonModule,
     TableModule,
     PopoverModule,
-    KLayoutComponent,
-    CommonModule
+    ConfirmDialogModule,
+    ParametersFiltersComponent
   ],
-  providers: [ParametersFilterService]
+  templateUrl: './parameters-content.component.html',
+  styleUrls: ['./parameters-content.component.scss'],
+  providers: [DialogService, ConfirmationService, ParametersFilterService]
+
 })
-export class ParametersContentComponent implements OnInit {
-@ViewChild('dataTable', { static: false }) private dataTable: Table;
+export class ParametersContentComponent {
+
+  @ViewChild('dataTable', { static: false }) private dataTable: Table;
   parameters: ParameterVo[] = [];
+  ref: DynamicDialogRef;
   rows = 15;
   totalRecords: number;
   request: FilterVO;
 
+  /**
+  * Constructor.
+  * @param dialogService service for pop up modal.
+  * @param confirmationService service for pop up confirmation.
+  * @param messageService service for message into the window.
+  * @param filterService filters from search inputs.
+  * @param parametersService service to connect to API REST.
+  */
+
   constructor(
+    public dialogService: DialogService,
+    private confirmationService: ConfirmationService,
     private messageService: KMessageService,
+    private userService: UserService,
     private filterService: ParametersFilterService,
     private parametersService: ParametersService
   ) {
     this.request = new FilterVO();
   }
-/**
+
+  /**
    * search event to throw pagination event.
    */
   onSearchEvent() {
@@ -78,7 +118,65 @@ export class ParametersContentComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * Close modal process
+   */
+  closeModal() {
+    this.ref.onClose.subscribe((data: ParameterVo) => {
+      if (data) {
+        this.onSearchEvent();
+      }
+    });
+  }
+
+  /**
+   *  open the modal to  save person.
+   */
+  openSaveModal() {
+    this.ref = this.dialogService.open(ParametersModalComponent, {
+      header: 'Agregar parámetro',
+    });
+    this.closeModal();
+  }
+
+  /**
+  * open the modal to  update person.
+  * @param row is the person selected
+  */
+  openUpdateModal(row: ParameterVo) {
+    this.ref = this.dialogService.open(ParametersModalComponent, {
+      header: 'Editar parámetro',
+      data: row
+    });
+    this.closeModal();
+  }
+
+  /**
+   * @param row * open the confirm dualog to delete parameter.
+   */
+  confirmDelete(row: ParameterVo) {
+    this.confirmationService.confirm({
+      message: row.parameterCode + constants.MESSAGES.PARAMETERS.CONFIRM_DELETE,
+      header: 'Eliminar parámetro',
+      accept: () => {
+        this.parametersService.deleteData(row.parameterCode).subscribe(() => {
+          this.onSearchEvent();
+          this.messageService.success('Parámetro ' + row.parameterCode + ' ' + constants.MESSAGES.PARAMETERS.DELETE);
+        });
+      }
+    });
+  }
+
+  /**
+   * Logout function.
+   */
+  logout() {
+    this.userService.logout();
+  }
+
 }
+
 ```
 
 ```html
