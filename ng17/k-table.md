@@ -12,6 +12,8 @@ import { Table, TableModule } from 'primeng/table';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { KLayoutComponent } from '@ec.com.kgr/kng-components-v3/k-layout';
 import { CommonModule } from '@angular/common';
+import { ParametersFilterService } from '@parameters/services/parameters-filter.service';
+import { ParametersService } from '@parameters/services/parameters.service';
  
 @Component({
   selector: 'app-parameters-content',
@@ -23,17 +25,65 @@ import { CommonModule } from '@angular/common';
     PopoverModule,
     KLayoutComponent,
     CommonModule
-  ]
+  ],
+  providers: [ParametersFilterService]
 })
 export class ParametersContentComponent implements OnInit {
-  @ViewChild('dataTable', { static: false }) private dataTable: Table;
-  // ... more code
+@ViewChild('dataTable', { static: false }) private dataTable: Table;
+  parameters: ParameterVo[] = [];
+  rows = 15;
+  totalRecords: number;
+  request: FilterVO;
+
+  constructor(
+    private messageService: KMessageService,
+    private filterService: ParametersFilterService,
+    private parametersService: ParametersService
+  ) {
+    this.request = new FilterVO();
+  }
+/**
+   * search event to throw pagination event.
+   */
+  onSearchEvent() {
+    this.dataTable.clear();
+  }
+
+  /**
+   * pagination event to call load data and changue datatable.
+   * @param event have the page and rows of the datatable.
+   */
+  paginationEvent(event) {
+    this.loadData((event.first / this.rows));
+  }
+
+  /**
+  * load data call the API REST to get data by page and params.
+  * @param page the calculated page for the API REST.
+  */
+  loadData(page) {
+    this.request.filters = this.filterService.getFilters();
+    this.request.page = page;
+    this.request.size = this.rows;
+    this.parametersService.findByFilter(this.request).subscribe((response: ResponseVO) => {
+      const data = response.data;
+      if (data.content) {
+        this.parameters = data.content;
+      } else {
+        this.parameters = [];
+      }
+      this.totalRecords = data.total;
+      if (0 === data.total) {
+        this.messageService.info('No se encontraron resultados con los filtros ingresados.');
+      }
+    });
+  }
 }
 ```
 
 ```html
 <div class="scroll-content-elements k-ptable-header k-paginator">
-    <p-table #dataTable [value]="values" [paginator]="true" [rows]="15" paginatorPosition="top" [lazy]="true"
+    <p-table #dataTable [value]="parameters" [paginator]="true" [rows]="15" paginatorPosition="top" [lazy]="true"
             [totalRecords]="totalRecords" (onLazyLoad)="paginationEvent($event)" responsiveLayout="scroll" styleClass="p-datatable-lg p-datatable-striped">
             <ng-template pTemplate="caption">
                 <div class="k-ptable-header">
