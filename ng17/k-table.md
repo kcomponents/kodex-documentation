@@ -7,6 +7,7 @@
 
 El Componente p-table implementa una tabla de datos paginada y con funcionalidades avanzadas para aplicaciones web con `angular 17`. El componente depende de librerías de terceros tales como `primeng/table` y `ngx-bootstrap/popover` para proporcionar una experiencia de usuario óptima.
 
+parameters-content.component.ts
 ```typescript
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -179,6 +180,7 @@ export class ParametersContentComponent {
 
 ```
 
+parameters-content.component.html
 ```html
 <div class="scroll-content-elements k-ptable-header k-paginator">
     <p-table #dataTable [value]="parameters" [paginator]="true" [rows]="15" paginatorPosition="top" [lazy]="true"
