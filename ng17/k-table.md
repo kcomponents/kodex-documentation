@@ -184,9 +184,9 @@ loadData(page) {
   this.service.findByFilter(this.request).subscribe((response: ResponseVO) => {
     const data = response.data;
     if (data.content) {
-        this.values = data.content;
+        this.parameters = data.content;
     } else {
-        this.values = [];
+        this.parameters = [];
     }
     this.totalRecords = data.total;
     if (0 === data.total) {
